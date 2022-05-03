@@ -1,11 +1,10 @@
 import 'package:bacapp/main.dart';
-import 'package:bacapp/screens/Fields.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/Fields.dart';
 
 class NameEmail extends StatefulWidget {
   static const routeNme = '/NameEmail';
-
-  const NameEmail({Key? key}) : super(key: key);
 
   @override
   State<NameEmail> createState() => _NameEmailState();
@@ -38,7 +37,7 @@ class _NameEmailState extends State<NameEmail> {
               controller: _namecontroller,
             ),
             const SizedBox(
-              height: 5,
+              height: 10,
             ),
             TextField(
               textInputAction: TextInputAction.next,

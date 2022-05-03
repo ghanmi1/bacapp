@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'package:after_layout/after_layout.dart';
-import 'package:bacapp/screens/Fields.dart';
-import 'package:bacapp/screens/NameEmail.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+import '../screens/Fields.dart';
+import '../screens/NameEmail.dart';
 
+class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -19,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
     bool _seen = (prefs.getBool('seen') ?? false);
 
     if (_seen) {
-      Timer(Duration(seconds: 3),
+      Timer(const Duration(seconds: 3),
           (() => Navigator.of(context).pushReplacementNamed(Fields.routeName)));
     } else {
       await prefs.setBool('seen', true);
@@ -35,7 +34,12 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('addd')),
+      body: Center(
+          child: Text(
+        'Bac En Poche ',
+        style: TextStyle(
+            color: Colors.white, fontFamily: 'Quicksqnd', fontSize: 26),
+      )),
     );
   }
 }

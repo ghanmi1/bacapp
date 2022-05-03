@@ -1,8 +1,13 @@
-import 'package:bacapp/screens/Fields.dart';
-import 'package:bacapp/screens/NameEmail.dart';
-import 'package:bacapp/screens/Splashscreen.dart';
+import 'package:bacapp/screens/Course.dart';
+import 'package:bacapp/screens/PdfScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import './screens/Subjects.dart';
+import './screens/NameEmail.dart';
+import './screens/Fields.dart';
+import './screens/Courses.dart';
+import './screens/Splashscreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,9 +39,13 @@ class MyApp extends StatelessWidget {
             )),
       ),
       routes: {
-        '/': (context) => const SplashScreen(),
-        NameEmail.routeNme: (context) => const NameEmail(),
-        Fields.routeName: (context) => const Fields(),
+        '/': (context) => SplashScreen(),
+        NameEmail.routeNme: (context) => NameEmail(),
+        Fields.routeName: (context) => Fields(),
+        SubjectsScreen.routeName: (context) => SubjectsScreen(),
+        CoursesScreen.routeName: (context) => CoursesScreen(),
+        Course.routeName: (context) => Course(),
+        PdfScreen.routeName: (context) => PdfScreen(),
       },
     );
   }
