@@ -1,18 +1,21 @@
-import 'package:bacapp/screens/Course.dart';
-import 'package:bacapp/screens/PdfScreen.dart';
+import 'package:bacapp/screens/SubCours.dart';
+import 'package:bacapp/screens/pdfScreen.dart';
+import 'package:bacapp/screens/viewPdf.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-import './screens/Subjects.dart';
+import 'package:bacapp/screens/LesFilliers.dart';
+import 'package:bacapp/screens/lesCours.dart';
 import './screens/NameEmail.dart';
-import './screens/Fields.dart';
-import './screens/Courses.dart';
 import './screens/Splashscreen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -28,7 +31,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromRGBO(42, 42, 42, 1),
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: const TextStyle(
@@ -41,11 +43,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(),
         NameEmail.routeNme: (context) => NameEmail(),
-        Fields.routeName: (context) => Fields(),
-        SubjectsScreen.routeName: (context) => SubjectsScreen(),
-        CoursesScreen.routeName: (context) => CoursesScreen(),
-        Course.routeName: (context) => Course(),
+        LesCours.routeName: (context) => LesCours(),
+        SubCours.routeName: (context) => SubCours(),
         PdfScreen.routeName: (context) => PdfScreen(),
+        Viewpdf.routeName: (context) => Viewpdf(),
+        LesFilliers.routeName: (context) => LesFilliers(),
       },
     );
   }

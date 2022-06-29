@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "877867102193",
+    "project_id": "lofty-layout-344710",
+    "storage_bucket": "lofty-layout-344710.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877867102193:android:6938b8666de94ce81ade50",
+        "android_client_info": {
+          "package_name": "com.example.bacapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877867102193-iia24b6ein76rok77a2ind77i0rphq9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAdoVlQO2p_nEl4naYq4buxHF0x7DCjFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877867102193-iia24b6ein76rok77a2ind77i0rphq9p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "877867102193-7m9kh41sanh2epse6sr28gm49pjj46m0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bacapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

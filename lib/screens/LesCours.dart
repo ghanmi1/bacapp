@@ -1,27 +1,22 @@
-import 'package:bacapp/screens/viewPdf.dart';
+import 'package:bacapp/screens/SubCours.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PdfScreen extends StatefulWidget {
-  static const routeName = '/pdfScreen';
-  const PdfScreen({Key? key}) : super(key: key);
+class LesCours extends StatefulWidget {
+  static const routeName = '/lesCours';
+  const LesCours({Key? key}) : super(key: key);
 
   @override
-  State<PdfScreen> createState() => _PdfScreenState();
+  State<LesCours> createState() => _LesCoursState();
 }
 
-class _PdfScreenState extends State<PdfScreen> {
+class _LesCoursState extends State<LesCours> {
   @override
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final String? categoryTitle = routeArgs['name'];
-    final String secondeCollection = routeArgs['secondeCollection'];
-    final int thirdCollection = routeArgs['thirdCollection'];
-    final String secondeDoc = routeArgs['secondeDoc'];
     final String docId = routeArgs['id'];
-    final int ordre = routeArgs['ordre'];
-    final String firstDoc = routeArgs['firstDoc'];
     return Scaffold(
       appBar: AppBar(
         title: FittedBox(child: Text(categoryTitle!)),
@@ -36,12 +31,8 @@ class _PdfScreenState extends State<PdfScreen> {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('bac')
-            .doc(firstDoc)
-            .collection(secondeCollection)
-            .doc(secondeDoc)
-            .collection(thirdCollection.toString())
             .doc(docId)
-            .collection(ordre.toString())
+            .collection(categoryTitle)
             .orderBy('ordre', descending: false)
             .snapshots(),
         builder:
@@ -52,6 +43,7 @@ class _PdfScreenState extends State<PdfScreen> {
             );
           }
           final docs = streamSnapshot.data!.docs;
+
           return ListView.builder(
               padding: const EdgeInsets.all(10),
               itemCount: docs.length,
@@ -68,15 +60,17 @@ class _PdfScreenState extends State<PdfScreen> {
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
                     ),
-                    leading: const Icon(Icons.picture_as_pdf),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                     onTap: () {
-                      Navigator.of(context).pushNamed(Viewpdf.routeName,
-                          arguments: {
-                            'name': docs[index]['name'],
-                            'fileUrl': docs[index]['lienpdf']
-                          });
+                      Navigator.of(context)
+                          .pushNamed(SubCours.routeName, arguments: {
+                        'id': docs[index].id,
+                        'name': docs[index]['name'],
+                        'ordre': docs[index]['ordre'],
+                        'secondeCollection': categoryTitle,
+                        'firstDoc': docId,
+                      });
                     },
                   ),
                 );
