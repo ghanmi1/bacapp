@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             )),
       ),
       routes: {
-        '/': (context) => SplashScreen(),
+        '/': (context) => LesFilliers(),
         NameEmail.routeNme: (context) => NameEmail(),
         LesCours.routeName: (context) => LesCours(),
         SubCours.routeName: (context) => SubCours(),

@@ -1,4 +1,5 @@
-import 'package:bacapp/screens/lesCours.dart';
+import 'package:bacapp/screens/LesCours.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -35,34 +36,80 @@ class _LesFilliersState extends State<LesFilliers> {
           }
           final docs = streamSnapshot.data!.docs;
 
-          return ListView.builder(
-              padding: const EdgeInsets.all(10),
-              itemCount: docs.length,
-              itemBuilder: (ctx, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: ListTile(
-                    textColor: Colors.white,
-                    tileColor: const Color(0xfff7892b),
-                    title: Text(
-                      docs[index]['name'],
-                      style: const TextStyle(
-                          fontFamily: 'OpenSans',
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    onTap: () {
-                      Navigator.of(context).pushNamed(LesCours.routeName,
-                          arguments: {
-                            'id': docs[index].id,
-                            'name': docs[index]['name']
-                          });
-                    },
-                  ),
-                );
-              });
+          return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(
+                      width: 16,
+                    );
+                  },
+                  padding: const EdgeInsets.all(10),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: docs.length,
+                  itemBuilder: (ctx, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(LesCours.routeName,
+                            arguments: {
+                              'id': docs[index].id,
+                              'name': docs[index]['name']
+                            });
+                      },
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          alignment: Alignment.topCenter,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 2, vertical: 15),
+                          decoration: BoxDecoration(
+                            color: const Color(0xfff7892b),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            docs[index]['name'],
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'OpenSans',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    );
+
+                    // Padding(
+                    //   padding: const EdgeInsets.only(bottom: 8),
+                    //   child: listtile(
+                    //     // textColor: Colors.white,
+                    //     // tileColor: const Color(0xfff7892b),
+                    //     title: Text(
+                    //       docs[index]['name'],
+                    //       style: const TextStyle(
+                    //           fontFamily: 'OpenSans',
+                    //           fontSize: 16,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //     shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(15)),
+                    //     // onTap: () {
+                    //     //   Navigator.of(context).pushNamed(LesCours.routeName,
+                    //     //       arguments: {
+                    //     //         'id': docs[index].id,
+                    //     //         'name': docs[index]['name']
+                    //     //       });
+                    //     // },
+                    //   ),
+                    // );
+                  }),
+            ),
+          ]);
         },
       ),
     );

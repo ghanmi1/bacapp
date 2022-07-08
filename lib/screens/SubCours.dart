@@ -75,7 +75,7 @@ class _SubCoursState extends State<SubCours> {
                         'ordre': docs[index]['ordre'],
                         'secondeCollection': secondeCollection,
                         'firstDoc': firstDoc,
-                        'thirdCollection': docs[index]['ordre'],
+                        'thirdCollection': ordre,
                         'secondeDoc': docId,
                       });
                     },
